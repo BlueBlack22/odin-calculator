@@ -25,7 +25,8 @@ body {
 
 .display-box {
     background-color: #C8EFF9;
-    height: 100px;
+    max-height: 110px;
+    max-width: 293px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column-reverse;
@@ -41,14 +42,12 @@ body {
 }
 
 #display-secondary {
-    padding: 10px 15px 0 15px;
+    padding: 15px 15px 0 15px;
     font-size: 20px;
     color: #495159;
 }
 
-.hidden {
-    visibility: hidden;
-}
+
 
 .buttons {
     display: flex;
@@ -66,7 +65,8 @@ body {
 .operator-button,
 .number-button,
 .display-button,
-#equals {
+#equals,
+#decimal {
     width: 70px;
     height: 70px;
     border: 1px solid black;
@@ -79,7 +79,8 @@ body {
     background-color: #D17B88;
 }
 
-.number-button {
+.number-button,
+#decimal {
     background-color: #E3B5CC;
 }
 
