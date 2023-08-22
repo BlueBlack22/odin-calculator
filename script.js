@@ -8,26 +8,24 @@ const mainDisplay = document.querySelector('#display-main');
 const secondaryDisplay = document.querySelector('#display-secondary');
 
 function add(x, y) {
-    return x + y;
+    return Number(x) + Number(y);
 }
 
 function subtract(x, y) {
-    return x - y;
+    return Number(x) - Number(y);
 }
 
 function multiply(x, y) {
-    return x * y;
+    return Number(x) * Number(y);
 }
 
 function divide(x, y) {
-    if (y == 0) {
+    if (Number(y) == 0) {
         return 'no';
     } else {
-        return x / y;
+        return Number(x) / Number(y);
     }
 }
-
-
 
 function canAddOperator(operatorName, operatorValue) { 
     if (displayValue != '0' && operator == null) {
@@ -35,6 +33,14 @@ function canAddOperator(operatorName, operatorValue) {
         operator = operatorValue;
         clearMainDisplay();
         secondaryDisplay.textContent = firstNum + ' ' + operatorName;
+    }
+}
+
+function canCalculate() {
+    if (firstNum != null && operator != null) {
+        secondNum = displayValue;
+        secondaryDisplay.textContent += ' ' + secondNum + ' =';
+        operate(operator, firstNum, secondNum);
     }
 }
 
@@ -72,22 +78,22 @@ function updateSecondaryDisplay() {
 function operate(operator, firstNum, secondNum) {
     switch (operator) {
         case 'add': {
-            console.log(add(firstNum, secondNum));
+            mainDisplay.textContent = add(firstNum, secondNum);
             break;
         }
 
         case 'subtract': {
-            subtract(firstNum, secondNum);
+            mainDisplay.textContent = subtract(firstNum, secondNum);
             break;
         }
 
         case 'multiply': {
-            multiply(firstNum, secondNum);
+            mainDisplay.textContent = multiply(firstNum, secondNum);
             break;
         }
 
         case 'divide': {
-            divide(firstNum, secondNum);
+            mainDisplay.textContent = divide(firstNum, secondNum);
             break;
         }
     }
@@ -107,3 +113,4 @@ operatorButtons.forEach(function(currentBtn) {
 });
 
 const equalsButton = document.querySelector('#equals');
+equalsButton.addEventListener('click', (e) => canCalculate());
