@@ -57,6 +57,14 @@ function clearMainDisplay() {
     mainDisplay.textContent = displayValue;
 }
 
+function clearAll() {
+    clearMainDisplay();
+    firstNum = null;
+    secondNum = null;
+    operator = null;
+    secondaryDisplay.textContent = "";
+}
+
 function updateMainDisplay(value) {    
     if (displayValue.length >= 8) {
 
@@ -114,3 +122,6 @@ operatorButtons.forEach(function(currentBtn) {
 
 const equalsButton = document.querySelector('#equals');
 equalsButton.addEventListener('click', (e) => canCalculate());
+
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', (e) => clearAll());
