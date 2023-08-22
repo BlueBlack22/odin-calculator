@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto+Mono&family=Roboto:wght@100;300;400;500;900&display=swap');
+
 html,
 body {
     height: 100%;
@@ -8,36 +10,45 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #B6EAF7;
 }
 
 .container {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
     border-radius: 10px;
+    background-color: #B8B3E9;
+    border: 1px solid black;
+    font-family: 'Roboto Mono', sans-serif;
 }
 
 .display-box {
-    background-color: aqua;
+    background-color: #C8EFF9;
     height: 100px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
     align-items: end;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 #display-main {
-    padding: 0 15px 15px 15px;
-    font-size: 30px;
+    padding: 0 15px 10px 15px;
+    font-size: 50px;
 }
 
 #display-secondary {
-    padding: 15px 15px 0 15px;
-    margin-bottom: 15px;
+    padding: 10px 15px 0 15px;
+    font-size: 20px;
+    color: #495159;
 }
 
+.hidden {
+    visibility: hidden;
+}
 
 .buttons {
     display: flex;
@@ -56,12 +67,26 @@ body {
 .number-button,
 .display-button,
 #equals {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     border: 1px solid black;
-    border-radius: 1000px;    
+    border-radius: 5px;
+    font-size: 30px;
 }
 
 #equals {
-    width: 105px;
+    width: 145px;
+    background-color: #D17B88;
+}
+
+.number-button {
+    background-color: #E3B5CC;
+}
+
+.operator-button {
+    background-color: #D897B8;
+}
+
+.display-button {
+    background-color: #D17B88;
 }
