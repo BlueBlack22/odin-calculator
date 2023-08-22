@@ -4,6 +4,9 @@ let firstNum = null;
 let secondNum = null;
 let operator = null;
 
+const mainDisplay = document.querySelector('#display-main');
+const secondaryDisplay = document.querySelector('#display-secondary');
+
 function add(x, y) {
     return x + y;
 }
@@ -24,11 +27,35 @@ function divide(x, y) {
     }
 }
 
-function updateMainDisplay(value) {
-    const mainDisplay = document.querySelector('#display-main');
-    
+
+
+function canAddOperator(operatorName, operatorValue) { 
+    if (displayValue != '0' && operator == null) {
+        firstNum = displayValue;
+        operator = operatorValue;
+        clearMainDisplay();
+        secondaryDisplay.textContent = firstNum + ' ' + operatorName;
+    }
+}
+
+function alreadyDecimal() {
+    if (displayValue.includes('.')) {
+
+    } else {
+        updateMainDisplay('.');
+    }
+}
+
+function clearMainDisplay() {
+    displayValue = '0';
+    mainDisplay.textContent = displayValue;
+}
+
+function updateMainDisplay(value) {    
     if (displayValue.length >= 8) {
 
+    } else if (value == '.' && displayValue == '0') {
+        mainDisplay.textContent = '0.';
     }
     else if (displayValue == '0' && value != 'decimal') {
         mainDisplay.textContent = value;
@@ -66,7 +93,17 @@ function operate(operator, firstNum, secondNum) {
     }
 }
 
-const buttons = document.querySelectorAll('.number-button');
-buttons.forEach(function(currentBtn) {
+const numButtons = document.querySelectorAll('.number-button');
+numButtons.forEach(function(currentBtn) {
     currentBtn.addEventListener('click', (e) => updateMainDisplay(e.target.value));
 });
+
+const decimalButton = document.querySelector('#decimal');
+decimalButton.addEventListener('click', (e) => alreadyDecimal());
+
+const operatorButtons = document.querySelectorAll('.operator-button');
+operatorButtons.forEach(function(currentBtn) {
+    currentBtn.addEventListener('click', (e) => canAddOperator(e.target.textContent, e.target.value));
+});
+
+const equalsButton = document.querySelector('#equals');
