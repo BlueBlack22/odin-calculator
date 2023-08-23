@@ -4,6 +4,8 @@ let firstNum = null;
 let secondNum = null;
 let operator = null;
 
+let isResult = false;
+
 const mainDisplay = document.querySelector('#display-main');
 const secondaryDisplay = document.querySelector('#display-secondary');
 
@@ -28,7 +30,14 @@ function divide(x, y) {
 }
 
 function canAddOperator(operatorName, operatorValue) { 
-    if (displayValue != '0' && operator == null) {
+    if (operator == null || isResult == true) {
+        if (isResult) {
+            isResult = false;
+            secondNum = null;
+        }
+        
+        console.log(displayValue);
+
         firstNum = displayValue;
         operator = operatorValue;
         clearMainDisplay();
@@ -37,7 +46,7 @@ function canAddOperator(operatorName, operatorValue) {
 }
 
 function canCalculate() {
-    if (firstNum != null && operator != null) {
+    if (firstNum != null && operator != null && isResult == false) {
         secondNum = displayValue;
         secondaryDisplay.textContent += ' ' + secondNum + ' =';
         operate(operator, firstNum, secondNum);
@@ -62,10 +71,13 @@ function clearAll() {
     firstNum = null;
     secondNum = null;
     operator = null;
+    isResult = false;
     secondaryDisplay.textContent = "";
 }
 
 function updateMainDisplay(value) {    
+    if (isResult) clearAll();
+    
     if (displayValue.length >= 8) {
 
     } else if (value == '.' && displayValue == '0') {
@@ -79,32 +91,33 @@ function updateMainDisplay(value) {
     displayValue = mainDisplay.textContent;
 }
 
-function updateSecondaryDisplay() {
-
-}
-
 function operate(operator, firstNum, secondNum) {
     switch (operator) {
         case 'add': {
             mainDisplay.textContent = add(firstNum, secondNum);
+            isResult = true;
             break;
         }
 
         case 'subtract': {
             mainDisplay.textContent = subtract(firstNum, secondNum);
+            isResult = true;
             break;
         }
 
         case 'multiply': {
             mainDisplay.textContent = multiply(firstNum, secondNum);
+            isResult = true;
             break;
         }
 
         case 'divide': {
             mainDisplay.textContent = divide(firstNum, secondNum);
+            isResult = true;
             break;
         }
     }
+    displayValue = mainDisplay.textContent;
 }
 
 const numButtons = document.querySelectorAll('.number-button');
