@@ -35,9 +35,6 @@ function canAddOperator(operatorName, operatorValue) {
             isResult = false;
             secondNum = null;
         }
-        
-        console.log(displayValue);
-
         firstNum = displayValue;
         operator = operatorValue;
         clearMainDisplay();
@@ -75,6 +72,16 @@ function clearAll() {
     secondaryDisplay.textContent = "";
 }
 
+function showResult() {
+    displayValue = displayValue.toString();
+
+    if (displayValue.length > 8) {
+        displayValue = displayValue.slice(0, 8) + "...";
+    }
+
+    mainDisplay.textContent = displayValue;
+}
+
 function updateMainDisplay(value) {    
     if (isResult) clearAll();
     
@@ -94,30 +101,30 @@ function updateMainDisplay(value) {
 function operate(operator, firstNum, secondNum) {
     switch (operator) {
         case 'add': {
-            mainDisplay.textContent = add(firstNum, secondNum);
+            displayValue = add(firstNum, secondNum);
             isResult = true;
             break;
         }
 
         case 'subtract': {
-            mainDisplay.textContent = subtract(firstNum, secondNum);
+            displayValue = subtract(firstNum, secondNum);
             isResult = true;
             break;
         }
 
         case 'multiply': {
-            mainDisplay.textContent = multiply(firstNum, secondNum);
+            displayValue = multiply(firstNum, secondNum);
             isResult = true;
             break;
         }
 
         case 'divide': {
-            mainDisplay.textContent = divide(firstNum, secondNum);
+            displayValue = divide(firstNum, secondNum);
             isResult = true;
             break;
         }
     }
-    displayValue = mainDisplay.textContent;
+    showResult();
 }
 
 const numButtons = document.querySelectorAll('.number-button');
