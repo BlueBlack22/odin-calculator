@@ -63,6 +63,20 @@ function clearMainDisplay() {
     mainDisplay.textContent = displayValue;
 }
 
+function deleteLast() {
+    if (isResult) {
+        clearAll();
+    } else if (displayValue == '0.'){
+        clearMainDisplay();
+    } else if (displayValue != '0' && displayValue.toString().length > 1) {
+        displayValue = displayValue.toString().slice(0, -1);
+        mainDisplay.textContent = displayValue;
+    } else if (displayValue.toString().length == 1) {
+        displayValue = '0';
+        mainDisplay.textContent = displayValue;
+    }
+}
+
 function clearAll() {
     clearMainDisplay();
     firstNum = null;
@@ -77,9 +91,10 @@ function showResult() {
 
     if (displayValue.length > 8) {
         displayValue = displayValue.slice(0, 8);
+        mainDisplay.textContent = displayValue  + "...";
     }
 
-    mainDisplay.textContent = displayValue  + "...";
+    mainDisplay.textContent = displayValue;
 }
 
 function updateMainDisplay(value) {    
@@ -145,3 +160,6 @@ equalsButton.addEventListener('click', (e) => canCalculate());
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', (e) => clearAll());
+
+const deleteButton = document.querySelector('#delete');
+deleteButton.addEventListener('click', (e) => deleteLast());
