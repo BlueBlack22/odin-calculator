@@ -76,10 +76,10 @@ function showResult() {
     displayValue = displayValue.toString();
 
     if (displayValue.length > 8) {
-        displayValue = displayValue.slice(0, 8) + "...";
+        displayValue = displayValue.slice(0, 8);
     }
 
-    mainDisplay.textContent = displayValue;
+    mainDisplay.textContent = displayValue  + "...";
 }
 
 function updateMainDisplay(value) {    
