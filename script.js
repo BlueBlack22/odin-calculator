@@ -58,6 +58,19 @@ function alreadyDecimal() {
     }
 }
 
+function changeAxis() {
+    if (!isResult) {
+        if (displayValue.toString().includes('-')) {
+            displayValue = displayValue.toString().slice(1);
+        } else if (displayValue == '0') {
+            displayValue = '-';
+        } else if (displayValue.toString().length <= 7) {
+            displayValue = '-' + displayValue.toString();
+        }
+        mainDisplay.textContent = displayValue;
+    }
+}
+
 function clearMainDisplay() {
     displayValue = '0';
     mainDisplay.textContent = displayValue;
@@ -66,7 +79,7 @@ function clearMainDisplay() {
 function deleteLast() {
     if (isResult) {
         clearAll();
-    } else if (displayValue == '0.'){
+    } else if (displayValue == '0.' || displayValue == '-') {
         clearMainDisplay();
     } else if (displayValue != '0' && displayValue.toString().length > 1) {
         displayValue = displayValue.toString().slice(0, -1);
@@ -163,3 +176,6 @@ clearButton.addEventListener('click', (e) => clearAll());
 
 const deleteButton = document.querySelector('#delete');
 deleteButton.addEventListener('click', (e) => deleteLast());
+
+const changeAxisButton = document.querySelector('#change-axis');
+changeAxisButton.addEventListener('click', (e) => changeAxis());
